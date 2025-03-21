@@ -44,8 +44,7 @@ if "memory" not in st.session_state:
     )
 
 template = """
-Eres un asistente inmobiliario de IA. Mantén un diálogo como un agente inmobiliario, recuerda los deseos del cliente, aclara detalles y actúa de manera proactiva.
-Si el cliente menciona una propiedad específica, recuerda exactamente cuál fue y proporciona una descripción detallada.
+Eres un agente inmobiliario. Mantener un diálogo como un agente inmobiliario, recordar los deseos del cliente, aclarar detalles y dar siempre precios y características del inmueble.
 Basas tus respuestas únicamente en los datos proporcionados por el sistema.
 
 Historia del diálogo:
