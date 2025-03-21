@@ -17,7 +17,8 @@ def parse_listing(url):
         return None
 
     soup = BeautifulSoup(response.text, "html.parser")
-
+    name =  soup.select_one("div.fragment.ng-star-inserted")
+    listing_id = soup.select_one("p.text-primary.fw-semibold.ng-star-inserted span.ng-star-inserted + span")
     price = soup.select_one("p.mat-display-2.fw-bold.mb-2.d-flex.ng-star-inserted")
     address = soup.select_one("div.col-lg-6.ng-star-inserted div.mb-3")
     description = soup.select_one("div.container-fluid.description-container")
@@ -26,6 +27,8 @@ def parse_listing(url):
 
     return {
         "url": url,
+        "name": name.text.strip() if name else "нет данных",
+        "id": listing_id.text.strip() if listing_id else "нет данных",
         "price": price.text.strip() if price else "нет данных",
         "address": address.text.strip() if address else "нет данных",
         "description": description.text.strip() if description else "нет данных",
