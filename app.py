@@ -12,6 +12,7 @@ embeddings = AzureOpenAIEmbeddings(
     azure_endpoint=st.secrets["AZURE_EMBEDDINGS_ENDPOINT"],
     deployment="text-embedding-ada-002",
     api_version="2023-05-15"
+    temperature=0 
 )
 
 # Инструкция модели (как вести себя AI-риэлтору)
