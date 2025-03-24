@@ -31,7 +31,7 @@ metadata = []
 for idx, listing in enumerate(filtered_listings, start=1):
     print(f"🔍 Генерируем embedding {idx}/{len(filtered_listings)}")
     
-    combined_text = f"{listing['address']}. {listing['description']}. {' '.join(listing['features'])}"
+    combined_text = f"{listing['name']}. {listing['price']}. {listing['id']}. {listing['address']}. {listing['description']}. {' '.join(listing['features'])}"
     
     embedding_current = FAISS.from_texts([combined_text], embeddings_model)
 
