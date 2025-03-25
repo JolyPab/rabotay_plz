@@ -5,6 +5,12 @@ from langchain.memory import ConversationBufferMemory
 from langchain_community.vectorstores import FAISS
 import json
 from langchain.prompts import PromptTemplate
+from datetime import datetime
+
+
+# Получаем текущую дату
+current_date = datetime.now().strftime("%Y-%m-%d")
+
 
 # === Конфигурация Azure ===
 embeddings = AzureOpenAIEmbeddings(
@@ -16,10 +22,13 @@ embeddings = AzureOpenAIEmbeddings(
 )
 
 # Инструкция модели (как вести себя AI-риэлтору)
-system_prompt = """
+system_prompt = f"""
 Eres un asistente virtual para la selección de bienes raíces. Tu tarea es ayudar al cliente a elegir una propiedad que se ajuste lo máximo posible a sus deseos y necesidades.
 
+Fecha actual: {current_date}
+
 Tus responsabilidades:
+- Asegúrate de verificar la fecha actual ({current_date}) al ofrecer información, especialmente en casos de propiedades en renta o eventos limitados en el tiempo.
 - Mantén una conversación profesional y amigable, como un agente inmobiliario experimentado.
 - Pregunta al cliente detalles importantes: presupuesto, ubicación, tipo de propiedad, cantidad de habitaciones, características de infraestructura, preferencias de estilo y cualquier otro requisito adicional.
 - Recuerda las preferencias del cliente y tómalas en cuenta en futuras recomendaciones.
@@ -64,10 +73,13 @@ if "memory" not in st.session_state:
         return_messages=True
     )
 
-template = """
+template = f"""
 Eres un asistente virtual para la selección de bienes raíces. Tu tarea es ayudar al cliente a elegir una propiedad que se ajuste lo máximo posible a sus deseos y necesidades.
 
+Fecha actual: {current_date}
+
 Tus responsabilidades:
+- Asegúrate de verificar la fecha actual ({current_date}) al ofrecer información, especialmente en casos de propiedades en renta o eventos limitados en el tiempo.
 - Mantén una conversación profesional y amigable, como un agente inmobiliario experimentado.
 - Pregunta al cliente detalles importantes: presupuesto, ubicación, tipo de propiedad, cantidad de habitaciones, características de infraestructura, preferencias de estilo y cualquier otro requisito adicional.
 - Recuerda las preferencias del cliente y tómalas en cuenta en futuras recomendaciones.
@@ -89,7 +101,7 @@ Respuesta del asistente inmobiliario:
 """
 
 PROMPT = PromptTemplate(
-    input_variables=["context", "chat_history", "question"],
+    input_variables=["context", "chat_history", "current_date", "question"],
     template=template
 )
 
