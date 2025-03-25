@@ -103,7 +103,7 @@ Respuesta del asistente inmobiliario:
 PROMPT = PromptTemplate(
     input_variables=["context", "chat_history", "current_date", "question"],
     template=template
-)
+).partial(current_date=current_date)
 
 
 
