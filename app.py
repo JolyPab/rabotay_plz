@@ -12,7 +12,7 @@ embeddings = AzureOpenAIEmbeddings(
     azure_endpoint=st.secrets["AZURE_EMBEDDINGS_ENDPOINT"],
     deployment="text-embedding-ada-002",
     api_version="2023-05-15"
-    temperature=0 
+    
 )
 
 # Инструкция модели (как вести себя AI-риэлтору)
@@ -45,7 +45,8 @@ llm = AzureChatOpenAI(
     api_key=st.secrets["AZURE_OPENAI_API_KEY"],
     azure_endpoint=st.secrets["AZURE_OPENAI_ENDPOINT"],
     azure_deployment="gpt-4",
-    api_version="2024-02-15-preview"
+    api_version="2024-02-15-preview",
+    temperature=0 
 )
 
 # Загружаем FAISS и метаданные
