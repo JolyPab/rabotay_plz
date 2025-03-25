@@ -22,7 +22,7 @@ embeddings = AzureOpenAIEmbeddings(
 )
 
 # Инструкция модели (как вести себя AI-риэлтору)
-system_prompt = f"""
+system_prompt = """
 Eres un asistente virtual para la selección de bienes raíces. Tu tarea es ayudar al cliente a elegir una propiedad que se ajuste lo máximo posible a sus deseos y necesidades.
 
 Fecha actual: {current_date}
@@ -73,7 +73,7 @@ if "memory" not in st.session_state:
         return_messages=True
     )
 
-template = f"""
+template = """
 Eres un asistente virtual para la selección de bienes raíces. Tu tarea es ayudar al cliente a elegir una propiedad que se ajuste lo máximo posible a sus deseos y necesidades.
 
 Fecha actual: {current_date}
